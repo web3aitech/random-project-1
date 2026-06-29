@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "dev": "npx serve public",
+    "preview": "npx serve public"
+  }
+}
