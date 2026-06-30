@@ -613,13 +613,13 @@
     if (!peers.length) return;
 
     // Pick the title/short for the active language:
-    // prefer an explicit *_fr field, then the shared i18n dictionary,
+    // prefer an explicit *_<lang> field, then the shared i18n dictionary,
     // then fall back to the English source.
     function loc(svc, base) {
       var L = (window.RenueI18n && RenueI18n.lang) || 'en';
-      var fr = svc[base + '_fr'];
-      if (L === 'fr' && fr) return fr;
-      if (L === 'fr' && window.RenueI18n) {
+      var localized = svc[base + '_' + L];
+      if (L !== 'en' && localized) return localized;
+      if (L !== 'en' && window.RenueI18n) {
         var t = RenueI18n.t(svc[base]);
         if (t !== svc[base]) return t;
       }

@@ -1,5 +1,6 @@
 /* Renue Systems — client-side i18n (EN/FR)
-   Depends on window.RENUE_I18N_DICT (see translations.js).
+   Depends on window.RENUE_I18N_DICT (FR) and window.RENUE_I18N_DICT_ES (ES)
+   — see translations.js.
    Walks the DOM and swaps English source strings for French translations,
    keyed by exact (decoded, trimmed) text-node / attribute values.
    Persists the chosen language in localStorage and re-applies it on every
@@ -21,17 +22,26 @@
   var lang = 'en';
   try { lang = localStorage.getItem(STORAGE_KEY) || 'en'; } catch (e) {}
 
-  var dict = window.RENUE_I18N_DICT || {};
-  /* Normalized view of the dictionary: keys are run through norm() so that
-     hand-written keys (straight quotes/apostrophes) still match source text
-     that uses curly equivalents. */
+  /* Per-language dictionaries. EN is the source language (no dict needed);
+     every other language maps normalized English -> translated string. New
+     languages are added by registering a dict here and in setLang(). */
+  var DICTS = {
+    fr: window.RENUE_I18N_DICT,
+    es: window.RENUE_I18N_DICT_ES
+  };
+  function activeDict() { return DICTS[lang] || {}; }
+
+  /* Normalized view of the active dictionary: keys are run through norm() so
+     that hand-written keys (straight quotes/apostrophes) still match source
+     text that uses curly equivalents. */
   var ndict = {};
   function rebuild() {
     ndict = {};
+    var dict = activeDict();
     for (var k in dict) ndict[norm(k)] = dict[k];
   }
 
-  function isFr() { return lang === 'fr'; }
+  function isTranslated() { return lang !== 'en'; }
 
   /** Normalize whitespace so keys are immune to HTML line-wrapping, and
      flatten curly quotes/apostrophes so straight-form keys still match. */
@@ -44,12 +54,13 @@
 
   /** Translate an English string at runtime (for JS-injected text). */
   function t(en) {
-    if (!isFr() || en == null) return en;
+    if (!isTranslated() || en == null) return en;
     var key = norm(en);
     return ndict[key] != null ? ndict[key] : en;
   }
 
-  function setDict(d) { dict = d || {}; rebuild(); }
+  /** Replace the active language's dictionary at runtime. */
+  function setDict(d) { DICTS[lang] = d || {}; rebuild(); }
 
   /* ---- text nodes ---- */
   function walkText(root) {
@@ -65,16 +76,25 @@
     });
     var node;
     while ((node = walker.nextNode())) {
-      var raw = node.nodeValue;
-      var trimmed = raw.trim();
-      var key = norm(raw);
-      if (isFr()) {
+      /* The English source for this node: the original we captured the first
+         time we translated it, otherwise the current (still-English) value.
+         Keying off the source — not the live nodeValue — lets us switch
+         directly between any two translated languages (e.g. es <-> fr)
+         without stale text lingering from the previous language. */
+      var source = textOrig.has(node) ? textOrig.get(node) : node.nodeValue;
+      var trimmed = source.trim();
+      var key = norm(source);
+      if (isTranslated()) {
         if (ndict[key] != null) {
-          if (!textOrig.has(node)) textOrig.set(node, raw);
-          var idx = raw.indexOf(trimmed);
-          var lead = raw.slice(0, idx);
-          var trail = raw.slice(idx + trimmed.length);
+          if (!textOrig.has(node)) textOrig.set(node, node.nodeValue);
+          var idx = source.indexOf(trimmed);
+          var lead = source.slice(0, idx);
+          var trail = source.slice(idx + trimmed.length);
           node.nodeValue = lead + ndict[key] + trail;
+        } else if (textOrig.has(node)) {
+          /* No translation for this string in the active language: fall back
+             to the English original rather than leaving the previous lang. */
+          node.nodeValue = textOrig.get(node);
         }
       } else if (textOrig.has(node)) {
         node.nodeValue = textOrig.get(node);
@@ -92,16 +112,21 @@
         if (!el.hasAttribute(attr)) return;
         var val = el.getAttribute(attr);
         if (!val || !val.trim()) return;
-        var key = norm(val);
-        if (isFr()) {
+        /* Key off the stored English original (see walkText) so direct
+           switches between translated languages re-translate correctly. */
+        var store = attrOrig.has(el) ? attrOrig.get(el) : null;
+        var source = (store && attr in store) ? store[attr] : val;
+        var key = norm(source);
+        if (isTranslated()) {
           if (ndict[key] != null) {
-            if (!attrOrig.has(el)) attrOrig.set(el, {});
-            if (!(attr in attrOrig.get(el))) attrOrig.get(el)[attr] = val;
+            if (!store) { store = {}; attrOrig.set(el, store); }
+            if (!(attr in store)) store[attr] = val;
             el.setAttribute(attr, ndict[key]);
+          } else if (store && attr in store) {
+            el.setAttribute(attr, store[attr]);
           }
-        } else if (attrOrig.has(el)) {
-          var store = attrOrig.get(el);
-          if (attr in store) el.setAttribute(attr, store[attr]);
+        } else if (store && attr in store) {
+          el.setAttribute(attr, store[attr]);
         }
       });
     });
@@ -111,8 +136,10 @@
   function walkHead() {
     var titleEl = document.querySelector('title');
     if (titleEl) {
-      var tkey = norm(titleEl.textContent);
-      if (isFr() && ndict[tkey] != null) {
+      /* Key off the stored English original (see walkText). */
+      var tsource = textOrig.has(titleEl) ? textOrig.get(titleEl) : titleEl.textContent;
+      var tkey = norm(tsource);
+      if (isTranslated() && ndict[tkey] != null) {
         if (!textOrig.has(titleEl)) textOrig.set(titleEl, titleEl.textContent);
         titleEl.textContent = ndict[tkey];
       } else if (textOrig.has(titleEl)) {
@@ -125,14 +152,15 @@
       if (!meta) return;
       var val = meta.getAttribute('content');
       if (!val || !val.trim()) return;
-      var key = norm(val);
-      if (isFr() && ndict[key] != null) {
-        if (!attrOrig.has(meta)) attrOrig.set(meta, {});
-        if (!('content' in attrOrig.get(meta))) attrOrig.get(meta).content = val;
+      var store = attrOrig.has(meta) ? attrOrig.get(meta) : null;
+      var source = (store && 'content' in store) ? store.content : val;
+      var key = norm(source);
+      if (isTranslated() && ndict[key] != null) {
+        if (!store) { store = {}; attrOrig.set(meta, store); }
+        if (!('content' in store)) store.content = val;
         meta.setAttribute('content', ndict[key]);
-      } else if (attrOrig.has(meta)) {
-        var store = attrOrig.get(meta);
-        if ('content' in store) meta.setAttribute('content', store.content);
+      } else if (store && 'content' in store) {
+        meta.setAttribute('content', store.content);
       }
     });
   }
@@ -160,7 +188,7 @@
   }
 
   function apply() {
-    document.documentElement.lang = isFr() ? 'fr' : 'en';
+    document.documentElement.lang = lang;
     walkHead();
     walkText(document.body);
     walkAttrs(document.body);
@@ -168,7 +196,9 @@
   }
 
   function setLang(l) {
-    lang = (l === 'fr') ? 'fr' : 'en';
+    if (l !== 'fr' && l !== 'es') l = 'en';
+    lang = l;
+    rebuild();
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
     apply();
     window.dispatchEvent(new CustomEvent('renue:langchange', { detail: { lang: lang } }));
@@ -197,7 +227,7 @@
 
   /* Set <html lang> as early as possible (before DOMContentLoaded) to
      reduce the English flash for screen readers / document language. */
-  document.documentElement.lang = isFr() ? 'fr' : 'en';
+  document.documentElement.lang = lang;
 
   rebuild();
   init();

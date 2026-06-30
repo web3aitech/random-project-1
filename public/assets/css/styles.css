@@ -259,14 +259,23 @@ h4 { font-size: 0.95rem; }
   gap: 16px;
   justify-content: flex-end;
 }
-/* French header: tighten spacing so the logo is never squeezed out */
-:lang(fr) .header-inner { column-gap: 12px; }
-:lang(fr) .main-nav { gap: 0; }
+/* Translated headers (FR/ES): tighten spacing so the logo is never squeezed out.
+   Spanish copy runs longer than English, the same as French, so both languages
+   share these compaction rules. */
+:lang(fr) .header-inner,
+:lang(es) .header-inner { column-gap: 12px; }
+:lang(fr) .main-nav,
+:lang(es) .main-nav { gap: 0; }
 :lang(fr) .main-nav a,
-:lang(fr) .nav-drop-btn { padding: 7px 8px; font-size: 0.82rem; }
-:lang(fr) .header-cta { gap: 10px; }
-:lang(fr) .header-cta .btn-sm { font-size: 0.78rem; padding: 7px 12px; white-space: nowrap; }
-:lang(fr) .header-login { font-size: 0.82rem; }
+:lang(fr) .nav-drop-btn,
+:lang(es) .main-nav a,
+:lang(es) .nav-drop-btn { padding: 7px 8px; font-size: 0.82rem; }
+:lang(fr) .header-cta,
+:lang(es) .header-cta { gap: 10px; }
+:lang(fr) .header-cta .btn-sm,
+:lang(es) .header-cta .btn-sm { font-size: 0.78rem; padding: 7px 12px; white-space: nowrap; }
+:lang(fr) .header-login,
+:lang(es) .header-login { font-size: 0.82rem; }
 
 .phone-link {
   color: var(--navy);
@@ -495,6 +504,11 @@ h4 { font-size: 0.95rem; }
 .hero .carousel-track img {
   opacity: .82;
   filter: brightness(0) invert(1) grayscale(1);
+}
+/* Added partner logos (PNG) render larger than the original set on the hero */
+.hero .carousel-track img[src$=".png"] {
+  height: 84px;
+  max-width: 240px;
 }
 .hero .carousel-track img:hover {
   opacity: 1;
