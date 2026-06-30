@@ -679,7 +679,8 @@
 
   /* ---- Photo gallery lightbox ---- */
   (function () {
-    var grid = document.querySelector('.gallery-grid');
+    // Exclude the franchise video grid — it shares the gallery-grid class
+    var grid = document.querySelector('.gallery-grid:not(.franchise-video-grid)');
     if (!grid) return;
 
     var lb = document.createElement('div');
