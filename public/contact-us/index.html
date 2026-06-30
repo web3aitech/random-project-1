@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
 </head>
 <body>
   <header class="site-header" id="top">
@@ -37,8 +38,7 @@
         <a href="/contact-us/">Contact Us</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:+18665430800" class="phone-link">866-543-0800</a>
-        <a href="/contact-us/" class="btn btn-primary btn-sm">Get a Free Quote &rarr;</a>
+        <a href="#" class="header-login" aria-label="Log in"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Log in</a><div class="lang-picker"><button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language"><img class="lang-flag-img" src="https://flagcdn.com/20x15/us.png" alt="US" width="20" height="15"><span class="lang-code">EN</span><svg class="lang-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><ul class="lang-menu" role="listbox"><li class="lang-option lang-active" role="option" data-lang="en" data-code="EN" data-flag="https://flagcdn.com/20x15/us.png"><img class="lang-flag-img" src="https://flagcdn.com/20x15/us.png" alt="US" width="20" height="15"> English</li><li class="lang-option" role="option" data-lang="fr" data-code="FR" data-flag="https://flagcdn.com/20x15/fr.png"><img class="lang-flag-img" src="https://flagcdn.com/20x15/fr.png" alt="FR" width="20" height="15"> Fran&ccedil;ais</li></ul></div><a href="/#contact" class="btn btn-primary btn-sm">Free Demo Request</a>
       </div>
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -60,19 +60,15 @@
     </nav>
     <div class="nav-overlay-cta">
       <a href="tel:+18665430800" class="nav-overlay-phone">866-543-0800</a>
-      <a href="/contact-us/" class="btn btn-primary">Get a Free Quote &rarr;</a>
+      <a href="/contact-us/" class="btn btn-primary">Contact Us</a>
     </div>
   </div>
   <main>
-    <section class="page-hero premium-page-hero">
+    <section class="page-hero premium-page-hero contact-page-hero">
       <div class="container">
         <p class="eyebrow eyebrow-light">Contact</p>
-        <h1>Contact Renue Systems</h1>
-        <p>Renue is happy to help, whether it is deep cleaning, disinfecting, or other hospitality services. Contact us to reach the right office or schedule a personalized consultation.</p>
-        <div class="hero-actions page-hero-actions">
-          <a href="#contact-form" class="btn btn-primary btn-lg">Send a Message &rarr;</a>
-          <a href="tel:+18665430800" class="btn btn-outline btn-light btn-lg">Call 866-543-0800</a>
-        </div>
+        <h1>Let Us Make Your Property Shine</h1>
+        <p>Ready for your Renuevation&reg;? Contact us today and let&rsquo;s bring new life to your space. At Renue Systems, we are proud to provide top-quality deep cleaning and restoration services worldwide &mdash; serving cities across the United States, Canada, Paris, Madrid, Qatar, and beyond.</p>
       </div>
     </section>
     <section class="section reveal">
@@ -104,39 +100,362 @@
     <section class="section section-alt reveal">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Office Locations</p>
+          <p class="eyebrow"><img src="/assets/images/contact-us/map-pin.avif" alt="" width="14" height="16" class="eyebrow-icon" />Office Locations</p>
           <h2>Find your local Renue Systems team</h2>
-          <p>No matter where you are located, Renue's experienced teams are ready to help maintain spotless spaces that reflect the excellence and quality your property deserves.</p>
+          <p>No matter where you are located, our experienced team is ready to help you maintain spotless spaces that reflect the excellence and quality you deserve. Contact us today to learn more about our services or to schedule a personalized consultation.</p>
         </div>
-        <div class="service-directory card-grid-3">
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Arizona</h3><p>Renue Systems of Arizona</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Austin</h3><p>Renue Systems of Austin</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Central Florida</h3><p>Renue Systems of Central Florida</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Central Texas</h3><p>Renue Systems of Central Texas</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Chicago</h3><p>Renue Systems of Chicago</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Georgia</h3><p>Renue Systems of Georgia</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>L.A. West</h3><p>Renue Systems of L.A. West</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Louisiana</h3><p>Renue Systems of Louisiana</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Maui and the Big Island</h3><p>Renue Systems of Maui and the Big Island</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Michigan</h3><p>Renue Systems of Michigan</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Mid-America</h3><p>Renue Systems of Mid-America</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Mid-Atlantic</h3><p>Renue Systems of Mid-Atlantic</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>New England</h3><p>Renue Systems of New England</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>New Mexico</h3><p>Renue Systems of New Mexico</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>New York/New Jersey</h3><p>Renue Systems of New York/New Jersey</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>North Carolina</h3><p>Renue Systems of North Carolina</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>North Texas</h3><p>Renue Systems of North Texas</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Northern California/Nevada</h3><p>Renue Systems of Northern California/Nevada</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Oahu</h3><p>Renue Systems of Oahu</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Philadelphia</h3><p>Renue Systems of Philadelphia</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>San Diego</h3><p>Renue Systems of San Diego</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Southeast Florida</h3><p>Renue Systems of Southeast Florida</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">U.S.</span><h3>Southeast Texas</h3><p>Renue Systems of Southeast Texas</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">International</span><h3>Hungary</h3><p>Renue Systems of Hungary</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">International</span><h3>Madrid</h3><p>Renue Systems of Madrid</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">International</span><h3>Paris</h3><p>Renue Systems of Paris</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">International</span><h3>Qatar</h3><p>Renue Systems of Qatar</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
-          <article class="service-card premium-link-card"><span class="tag">International</span><h3>The GTA</h3><p>Renue Systems of The GTA</p><a class="card-link" href="#contact-form">Contact this office &rarr;</a></article>
+        <div class="office-map-wrap">
+          <div id="office-map" class="office-map" role="region" aria-label="Interactive map of Renue Systems office locations" data-region="us"></div>
+          <div id="office-map-card" class="office-map-card" hidden aria-live="polite"></div>
+        </div>
+
+        <!-- Region toggle -->
+        <div class="location-tabs" role="tablist" aria-label="Office region">
+          <button class="location-tab-btn active" id="tab-us" role="tab" aria-controls="panel-us" aria-selected="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            United States
+          </button>
+          <button class="location-tab-btn" id="tab-intl" role="tab" aria-controls="panel-intl" aria-selected="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            International
+          </button>
+        </div>
+
+        <!-- U.S. offices panel -->
+        <div id="panel-us" class="service-directory card-grid-3" role="tabpanel" aria-labelledby="tab-us">
+          <article class="service-card premium-link-card" data-slug="arizona" data-lat="33.676266" data-lng="-112.202658" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/arizona.avif" alt="Hector &amp; Doris Monsalve" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Arizona</h3>
+            <p class="office-name">Renue Systems of Arizona</p>
+            <p class="office-contact">Hector &amp; Doris Monsalve</p>
+            <p class="office-addr">21014 N 66th Lane, Glendale, AZ 85308</p>
+            <p class="office-phone">Hector Cell: <a href="tel:+16026763030">602-676-3030</a><br>Office: <a href="tel:+15057208254">505-720-8254</a></p>
+            <p class="office-email"><a href="mailto:hector.monsalve@renuesystems.com">hector.monsalve@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="austin" data-lat="29.8523" data-lng="-98.1719" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/austin.avif" alt="Bobby Lopez" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Austin</h3>
+            <p class="office-name">Renue Systems of Austin</p>
+            <p class="office-contact">Bobby Lopez</p>
+            <p class="office-addr">220 Demi John Bend Road, Canyon Lake, TX 78133</p>
+            <p class="office-phone"><a href="tel:+12816864649">281-686-4649</a></p>
+            <p class="office-email"><a href="mailto:bl@renuesystems.com">bl@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="central-florida" data-lat="28.380000" data-lng="-81.520000" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/central-florida.avif" alt="Larry Peak &amp; Marc Stein" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Central Florida</h3>
+            <p class="office-name">Renue Systems of Central Florida</p>
+            <p class="office-contact">Larry Peak &amp; Marc Stein</p>
+            <p class="office-addr">12386 State Road 535, #330, Orlando, FL 32836</p>
+            <p class="office-phone">Larry: <a href="tel:+18137870080">813-787-0080</a><br>Marc: <a href="tel:+19044763899">904-476-3899</a></p>
+            <p class="office-email"><a href="mailto:larry.peak@renuesystems.com">larry.peak@renuesystems.com</a><br><a href="mailto:marc.stein@renuesystems.com">marc.stein@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="central-texas" data-lat="29.8523" data-lng="-98.1719" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/central-texas.avif" alt="Bobby Lopez" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Central Texas</h3>
+            <p class="office-name">Renue Systems of Central Texas</p>
+            <p class="office-contact">Bobby Lopez</p>
+            <p class="office-addr">220 Demi John Bend Road, Canyon Lake, TX 78133</p>
+            <p class="office-phone"><a href="tel:+12816864649">281-686-4649</a></p>
+            <p class="office-email"><a href="mailto:bl@renuesystems.com">bl@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="chicago" data-lat="41.895514" data-lng="-88.018032" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/chicago.avif" alt="Marty Jollette" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Chicago</h3>
+            <p class="office-name">Renue Systems of Chicago</p>
+            <p class="office-contact">Marty Jollette</p>
+            <p class="office-addr">1147 N Main Street, Lombard, IL 60148</p>
+            <p class="office-phone"><a href="tel:+16308806223">630-880-6223</a></p>
+            <p class="office-email"><a href="mailto:mj@renuesystems.com">mj@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="georgia" data-lat="34.003514" data-lng="-84.596947" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/georgia.avif" alt="Chris &amp; Anne Krajewski" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Georgia</h3>
+            <p class="office-name">Renue Systems of Georgia</p>
+            <p class="office-contact">Chris &amp; Anne Krajewski</p>
+            <p class="office-addr">1690 Roberts Boulevard, Suite 116, Kennesaw, GA 30144</p>
+            <p class="office-phone"><a href="tel:+17705143099">770-514-3099</a></p>
+            <p class="office-email"><a href="mailto:ck@renuesystems.com">ck@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuesystemsga.com" target="_blank" rel="noopener">www.renuesystemsga.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="la-west" data-lat="33.820000" data-lng="-118.390000" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/la-west.avif" alt="Amir Shahzad &amp; Yacoob Mayet" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>L.A. West</h3>
+            <p class="office-name">Renue Systems of Los Angeles</p>
+            <p class="office-contact">Amir Shahzad &amp; Yacoob Mayet</p>
+            <p class="office-addr">P.O. Box 4208, Redondo Beach, CA 90277</p>
+            <p class="office-phone"><a href="tel:+18059853523">805-985-3523</a></p>
+            <p class="office-email"><a href="mailto:LAWest@renuesystems.com">LAWest@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="louisiana" data-lat="29.943116" data-lng="-90.206005" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/louisiana.avif" alt="Daryl Rappold" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Louisiana</h3>
+            <p class="office-name">Renue Systems of Louisiana</p>
+            <p class="office-contact">Daryl Rappold</p>
+            <p class="office-addr">535 Woodward Avenue, Harahan, LA 70123</p>
+            <p class="office-phone">Daryl: <a href="tel:+15043440535">504-344-0535</a><br>Rickey: <a href="tel:+15044950001">504-495-0001</a></p>
+            <p class="office-email"><a href="mailto:louisiana3@renuesystems.com">louisiana3@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="maui" data-lat="20.884652" data-lng="-156.457282" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/maui.avif" alt="Greg Schlais" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Maui and the Big Island</h3>
+            <p class="office-name">Renue Systems of Maui and the Big Island</p>
+            <p class="office-contact">Greg Schlais</p>
+            <p class="office-addr">270 Lalo Street, Suite 103, Kahului, HI 96732</p>
+            <p class="office-phone"><a href="tel:+18085617692">808-561-7692</a></p>
+            <p class="office-email"><a href="mailto:greg.schlais@renuesystems.com">greg.schlais@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuehawaii.com" target="_blank" rel="noopener">www.renuehawaii.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="michigan" data-lat="42.549716" data-lng="-83.391918" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/michigan.avif" alt="Michael &amp; Deborah Robison" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Michigan</h3>
+            <p class="office-name">Renue Systems of Michigan</p>
+            <p class="office-contact">Michael &amp; Deborah Robison</p>
+            <p class="office-addr">5553 Cromwell Court, West Bloomfield, MI 48322</p>
+            <p class="office-phone"><a href="tel:+12486721260">248-672-1260</a></p>
+            <p class="office-email"><a href="mailto:mr@renuesystems.com">mr@renuesystems.com</a><br><a href="mailto:dmr@renuesystems.com">dmr@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuesystemsmi.com" target="_blank" rel="noopener">www.renuesystemsmi.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="mid-america" data-lat="35.593322" data-lng="-97.572930" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/mid-america.avif" alt="Jimmy Polk" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Mid-America</h3>
+            <p class="office-name">Renue Systems of Mid-America</p>
+            <p class="office-contact">Jimmy Polk</p>
+            <p class="office-addr">11204 Thorn Ridge Road, Oklahoma City, OK 73120</p>
+            <p class="office-phone"><a href="tel:+14056304338">405-630-4338</a></p>
+            <p class="office-email"><a href="mailto:jp@renuesystems.com">jp@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuemidamerica.com" target="_blank" rel="noopener">www.renuemidamerica.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="mid-atlantic" data-lat="39.352092" data-lng="-76.698414" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/mid-atlantic.avif" alt="Joe Nissel" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Mid-Atlantic</h3>
+            <p class="office-name">Renue Systems of the Mid-Atlantic</p>
+            <p class="office-contact">Joe Nissel</p>
+            <p class="office-addr">4112 Pinkney Road, Baltimore, MD 21215</p>
+            <p class="office-phone"><a href="tel:+14107649260">410-764-9260</a></p>
+            <p class="office-email"><a href="mailto:jnissel@renuesystems.com">jnissel@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="new-england" data-lat="42.350000" data-lng="-71.210000" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/new-england.avif" alt="Shaun Salmon" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>New England</h3>
+            <p class="office-name">Renue Systems of New England</p>
+            <p class="office-contact">Shaun Salmon</p>
+            <p class="office-addr">62 Broadway Street, Newtonville, MA 02460</p>
+            <p class="office-phone"><a href="tel:+16179976434">617-997-6434</a></p>
+            <p class="office-email"><a href="mailto:shaun.salmon@renuesystems.com">shaun.salmon@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuenewengland.com" target="_blank" rel="noopener">www.renuenewengland.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="new-mexico" data-lat="35.204123" data-lng="-106.728182" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/new-mexico.avif" alt="Hector &amp; Cristian Monsalve" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>New Mexico</h3>
+            <p class="office-name">Renue Systems of New Mexico</p>
+            <p class="office-contact">Hector &amp; Cristian Monsalve</p>
+            <p class="office-addr">10404 Venticello Drive NW, Albuquerque, NM 87114</p>
+            <p class="office-phone">Hector: <a href="tel:+15057208254">505-720-8254</a><br>Cristian: <a href="tel:+15052632481">505-263-2481</a></p>
+            <p class="office-email"><a href="mailto:hm@renuesystems.com">hm@renuesystems.com</a><br><a href="mailto:cm@renuesystems.com">cm@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuenewmexico.com" target="_blank" rel="noopener">www.renuenewmexico.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="new-york-nj" data-lat="40.260000" data-lng="-74.300000" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/new-york-nj.avif" alt="Justin Chodos" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>New York / New Jersey</h3>
+            <p class="office-name">Renue Systems of New York / New Jersey</p>
+            <p class="office-contact">Justin Chodos</p>
+            <p class="office-addr">919 Highway 33, Suite 42, Freehold, NJ 07728</p>
+            <p class="office-phone"><a href="tel:+17323031176">732-303-1176</a></p>
+            <p class="office-email"><a href="mailto:jchodos@renuesystems.com">jchodos@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuesystemsnynj.com" target="_blank" rel="noopener">www.renuesystemsnynj.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="north-carolina" data-lat="35.780398" data-lng="-78.639099" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/north-carolina.avif" alt="Frank-Paul Sampino" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>North Carolina</h3>
+            <p class="office-name">Renue Systems of North Carolina</p>
+            <p class="office-contact">Frank-Paul Sampino</p>
+            <p class="office-phone"><a href="tel:+19193071778">919-307-1778</a></p>
+            <p class="office-email"><a href="mailto:fps@renuesystems.com">fps@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.RenueNC.com" target="_blank" rel="noopener">www.RenueNC.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="north-texas" data-lat="32.813768" data-lng="-96.766328" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/north-texas.avif" alt="Christophe Lamarsaude" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>North Texas</h3>
+            <p class="office-name">Renue Systems of North Texas</p>
+            <p class="office-contact">Christophe Lamarsaude</p>
+            <p class="office-addr">5848 Oram Street, Dallas, TX 75206</p>
+            <p class="office-phone"><a href="tel:+12145008667">214-500-8667</a></p>
+            <p class="office-email"><a href="mailto:cbl@renuesystems.com">cbl@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="northern-california" data-lat="38.727378" data-lng="-121.270757" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/northern-california.avif" alt="Rick Palmer" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Northern California / Nevada</h3>
+            <p class="office-name">Renue Systems of Northern California / Nevada</p>
+            <p class="office-contact">Rick Palmer</p>
+            <p class="office-addr">1079 Sunrise Avenue, B-189, Roseville, CA 95661</p>
+            <p class="office-phone"><a href="tel:+19163904748">916-390-4748</a></p>
+            <p class="office-email"><a href="mailto:rp@renuesystems.com">rp@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="oahu" data-lat="21.317424" data-lng="-157.859927" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/oahu.avif" alt="Matt Mullins" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Oahu</h3>
+            <p class="office-name">Renue Systems of Oahu</p>
+            <p class="office-contact">Matt Mullins</p>
+            <p class="office-addr">200 N Vineyard Boulevard, Ste 325-195, Honolulu, HI 96817</p>
+            <p class="office-phone"><a href="tel:+18082247936">808-224-7936</a></p>
+            <p class="office-email"><a href="mailto:mm@renuesystems.com">mm@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuehawaii.com" target="_blank" rel="noopener">www.renuehawaii.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="philadelphia" data-lat="39.352092" data-lng="-76.698414" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/philadelphia.avif" alt="Joe Nissel" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Philadelphia</h3>
+            <p class="office-name">Renue Systems of Philadelphia</p>
+            <p class="office-contact">Joe Nissel</p>
+            <p class="office-addr">4112 Pinkney Road, Baltimore, MD 21215</p>
+            <p class="office-phone"><a href="tel:+14107649260">410-764-9260</a></p>
+            <p class="office-email"><a href="mailto:jnissel@renuesystems.com">jnissel@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="san-diego" data-lat="32.8757" data-lng="-117.2269" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/san-diego.avif" alt="Art Hagopian" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>San Diego</h3>
+            <p class="office-name">Renue Systems of San Diego</p>
+            <p class="office-contact">Art Hagopian</p>
+            <p class="office-addr">4225 Executive Square, #600, La Jolla, CA 92037</p>
+            <p class="office-phone"><a href="tel:+18582657233">858-265-7233</a></p>
+            <p class="office-email"><a href="mailto:art@renuesystems.com">art@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuesandiego.com" target="_blank" rel="noopener">www.renuesandiego.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="southeast-florida" data-lat="25.942545" data-lng="-80.181559" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/southeast-florida.avif" alt="Enrique Nessim" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Southeast Florida</h3>
+            <p class="office-name">Renue Systems of Southeast Florida</p>
+            <p class="office-contact">Enrique Nessim</p>
+            <p class="office-addr">1835 NE Miami Gardens Drive, #328, North Miami Beach, FL 33179</p>
+            <p class="office-phone"><a href="tel:+19545450144">954-545-0144</a></p>
+            <p class="office-email"><a href="mailto:enessim@renuesystems.com">enessim@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renueseflorida.com" target="_blank" rel="noopener">www.renueseflorida.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="southeast-texas" data-lat="30.2184" data-lng="-95.7547" data-region="us">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/southeast-texas.avif" alt="Greg Oliver" loading="lazy" /></div>
+            <span class="tag">U.S.</span>
+            <h3>Southeast Texas</h3>
+            <p class="office-name">Renue Systems of Southeast Texas</p>
+            <p class="office-contact">Greg Oliver</p>
+            <p class="office-addr">26915 Widens Park Drive, Magnolia, TX 77354</p>
+            <p class="office-phone"><a href="tel:+17139629651">713-962-9651</a></p>
+            <p class="office-email"><a href="mailto:greg.oliver@renuesystems.com">greg.oliver@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+        </div>
+
+        <!-- International offices panel -->
+        <div id="panel-intl" class="service-directory card-grid-3" role="tabpanel" aria-labelledby="tab-intl" hidden>
+          <article class="service-card premium-link-card" data-slug="hungary" data-lat="47.497879" data-lng="19.040238" data-region="intl">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/hungary.avif" alt="Bence Szekeres &amp; Henrik Lakoczky" loading="lazy" /></div>
+            <span class="tag">International</span>
+            <h3>Hungary</h3>
+            <p class="office-name">Renue Systems of Hungary</p>
+            <p class="office-contact">Bence Szekeres &amp; Henrik Lakoczky</p>
+            <p class="office-phone"><a href="tel:+36307695632">36 30 769 5632</a></p>
+            <p class="office-email"><a href="mailto:bence.szekeres@renuesystems.com">bence.szekeres@renuesystems.com</a><br><a href="mailto:henrik.lakoczky@renuesystems.com">henrik.lakoczky@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="madrid" data-lat="40.416782" data-lng="-3.703507" data-region="intl">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/madrid.avif" alt="Fernando &amp; Sebastian Fernandez" loading="lazy" /></div>
+            <span class="tag">International</span>
+            <h3>Madrid</h3>
+            <p class="office-name">Renue Systems of Madrid SL</p>
+            <p class="office-contact">Fernando &amp; Sebastian Fernandez</p>
+            <p class="office-phone">Fernando: <a href="tel:+34658081580">34 658 08 15 80</a></p>
+            <p class="office-email"><a href="mailto:fernando@renuesystems.com">fernando@renuesystems.com</a><br><a href="mailto:sebastian@renuesystems.com">sebastian@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="paris" data-lat="48.884248" data-lng="2.276658" data-region="intl">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/paris.avif" alt="Guillaume Bitran" loading="lazy" /></div>
+            <span class="tag">International</span>
+            <h3>Paris</h3>
+            <p class="office-name">Renue Systems of Paris</p>
+            <p class="office-contact">Guillaume Bitran</p>
+            <p class="office-addr">23 Avenue Philippe Leboucher, Neuilly sur Seine, France, 92200</p>
+            <p class="office-phone"><a href="tel:+33144016666">33 1 44 01 66 66</a></p>
+            <p class="office-email"><a href="mailto:guillaume.bitran@renuesystems.com">guillaume.bitran@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="qatar" data-lat="25.310881" data-lng="51.508181" data-region="intl">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/qatar.avif" alt="Ehab Abdullah" loading="lazy" /></div>
+            <span class="tag">International</span>
+            <h3>Qatar</h3>
+            <p class="office-name">Renue Systems of Qatar</p>
+            <p class="office-contact">Ehab Abdullah</p>
+            <p class="office-addr">P.O. Box 55857, Doha, Qatar</p>
+            <p class="office-phone"><a href="tel:+97444274011">974-442-74011</a></p>
+            <p class="office-email"><a href="mailto:ehab.said@renuesystems.com">ehab.said@renuesystems.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+          <article class="service-card premium-link-card" data-slug="gta" data-lat="43.684184" data-lng="-79.352931" data-region="intl">
+            <div class="card-photo"><img src="/assets/images/contact-us/offices/gta.avif" alt="Tim Pausner" loading="lazy" /></div>
+            <span class="tag">International</span>
+            <h3>The GTA</h3>
+            <p class="office-name">Renue Systems of The GTA</p>
+            <p class="office-contact">Tim Pausner</p>
+            <p class="office-addr">171 Arundel Avenue, Toronto, ON M4K 3B1</p>
+            <p class="office-phone"><a href="tel:+14162580191">416-258-0191</a></p>
+            <p class="office-email"><a href="mailto:tim.pausner@renuesystems.com">tim.pausner@renuesystems.com</a></p>
+            <p class="office-web"><a href="https://www.renuesystemsgta.com" target="_blank" rel="noopener">www.renuesystemsgta.com</a></p>
+            <a class="card-link" href="#contact-form">Contact this office &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section section-alt reveal">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Franchise Opportunities</p>
+          <h2>Want to own a Renue franchise?</h2>
+          <p>If you&rsquo;ve been looking for a unique and industry-leading business with a proven track record, strong name recognition and a reputation for providing world-class quality, you just found one.</p>
+        </div>
+        <div class="section-cta">
+          <a href="/franchise-opportunities/" class="btn btn-primary btn-lg">Learn more about launching your own Renue franchise &rarr;</a>
         </div>
       </div>
     </section>
@@ -181,7 +500,7 @@
           <ul>
             <li><a href="/photos/">Photos</a></li>
             <li><a href="/videos/">Videos</a></li>
-            <li><a href="/contact-us/">Free Quote</a></li>
+            <li><a href="/#contact">Free Quote</a></li>
           </ul>
         </div>
       </div>
@@ -194,8 +513,11 @@
 
   <div class="mobile-cta-bar">
     <a href="tel:+18665430800" class="btn btn-outline">Call</a>
-    <a href="/contact-us/" class="btn btn-primary">Get a Free Quote &rarr;</a>
+    <a href="/contact-us/" class="btn btn-primary">Contact Us</a>
   </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/i18n.js"></script>
   <script src="/assets/js/script.js"></script>
 </body>
 </html>
