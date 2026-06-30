@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Renuevation</title>
+  <desc id="desc">Renuevation: Transform Today's Clean into Tomorrow's Wow.</desc>
+  <defs>
+    <linearGradient id="renuevationGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3bb34a"/>
+      <stop offset="1" stop-color="#39b7e6"/>
+    </linearGradient>
+  </defs>
+  <rect x="110" y="36" width="980" height="126" rx="2" fill="url(#renuevationGradient)"/>
+  <text x="600" y="132" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="104" font-weight="500" fill="#fff" letter-spacing="-4">Renuevation</text>
+  <text x="1044" y="70" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="600" fill="#fff">®</text>
+  <text x="600" y="238" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="48" font-weight="500" fill="#8d9297" letter-spacing="-1">Transform Today's Clean</text>
+  <text x="600" y="304" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="48" font-weight="500" fill="#8d9297" letter-spacing="-1">into Tomorrow's Wow.</text>
+</svg>
