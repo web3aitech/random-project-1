@@ -91,6 +91,7 @@
     var viewport = carousel.querySelector('.carousel-viewport');
     var prevBtn  = carousel.querySelector('.carousel-prev');
     var nextBtn  = carousel.querySelector('.carousel-next');
+    var autoTimer = null;
 
     // Collect only the original (real) items — no clones yet
     var realItems = Array.from(track.children);
@@ -173,8 +174,25 @@
       busy = false;
     });
 
-    nextBtn.addEventListener('click', function () { navigate(1); });
-    prevBtn.addEventListener('click', function () { navigate(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { navigate(1); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { navigate(-1); });
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = window.setInterval(function () { navigate(1); }, 2600);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
 
     // Rebuild on resize and reposition without animation
     var resizeTimer;
@@ -189,6 +207,7 @@
     // Init
     buildClones();
     jump(current);
+    startAuto();
   }());
 
   /* ---- Case studies carousel ---- */
