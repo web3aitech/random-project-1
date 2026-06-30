@@ -1,0 +1,16 @@
+# Dependencies (no declared deps in package.json; keep local installs out of git)
+node_modules/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment
+.env
+.env.local
+.env.*.local
+
+# Build / scratch tooling output
+_tmp_*
+scripts/url-map.json
