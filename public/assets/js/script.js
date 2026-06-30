@@ -84,130 +84,134 @@
 
   /* ---- Partner logo carousel — seamless infinite loop ---- */
   (function () {
-    var carousel = document.querySelector('.logo-carousel');
-    if (!carousel) return;
+    var carousels = Array.from(document.querySelectorAll('.logo-carousel'));
+    if (!carousels.length) return;
 
-    var track    = carousel.querySelector('.carousel-track');
-    var viewport = carousel.querySelector('.carousel-viewport');
-    var prevBtn  = carousel.querySelector('.carousel-prev');
-    var nextBtn  = carousel.querySelector('.carousel-next');
-    var autoTimer = null;
+    carousels.forEach(function (carousel) {
+      var track    = carousel.querySelector('.carousel-track');
+      var viewport = carousel.querySelector('.carousel-viewport');
+      if (!track || !viewport) return;
 
-    // Collect only the original (real) items — no clones yet
-    var realItems = Array.from(track.children);
-    var REAL = realItems.length;
-    var busy = false;
-    var cloneCount = 0;
-    var current = 0; // logical index into the full track (set after buildClones)
+      var prevBtn  = carousel.querySelector('.carousel-prev');
+      var nextBtn  = carousel.querySelector('.carousel-next');
+      var autoTimer = null;
 
-    function slots() {
-      var w = viewport.offsetWidth;
-      if (w < 480) return 2;
-      if (w < 800) return 3;
-      return 4;
-    }
+      // Collect only the original (real) items — no clones yet
+      var realItems = Array.from(track.children);
+      var REAL = realItems.length;
+      var busy = false;
+      var cloneCount = 0;
+      var current = 0; // logical index into the full track (set after buildClones)
 
-    function itemW() {
-      var li = track.querySelector('li');
-      return li ? li.offsetWidth : 0;
-    }
-
-    function buildClones() {
-      // Remove existing clones
-      Array.from(track.querySelectorAll('.carousel-clone')).forEach(function (el) { el.remove(); });
-
-      cloneCount = slots(); // clone enough to fill one screen on each side
-
-      // Prepend clones of the LAST cloneCount real items
-      // so scrolling left from item 0 seamlessly shows the end
-      var frag = document.createDocumentFragment();
-      for (var i = REAL - cloneCount; i < REAL; i++) {
-        var c = realItems[i].cloneNode(true);
-        c.classList.add('carousel-clone');
-        c.setAttribute('aria-hidden', 'true');
-        frag.appendChild(c);
-      }
-      track.insertBefore(frag, track.firstChild);
-
-      // Append clones of the FIRST cloneCount real items
-      // so scrolling right past the last item seamlessly shows the start
-      for (var j = 0; j < cloneCount; j++) {
-        var c = realItems[j].cloneNode(true);
-        c.classList.add('carousel-clone');
-        c.setAttribute('aria-hidden', 'true');
-        track.appendChild(c);
+      function slots() {
+        var w = viewport.offsetWidth;
+        if (w < 480) return 2;
+        if (w < 800) return 3;
+        return 4;
       }
 
-      // Start positioned at the first real item (index = cloneCount)
-      current = cloneCount;
-    }
-
-    function jump(index) {
-      // Instant position change — no animation
-      track.style.transition = 'none';
-      track.style.transform = 'translateX(-' + (index * itemW()) + 'px)';
-      // Force reflow so the next transition isn't skipped
-      track.getBoundingClientRect();
-    }
-
-    function slide(index) {
-      track.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1)';
-      track.style.transform = 'translateX(-' + (index * itemW()) + 'px)';
-    }
-
-    function navigate(dir) {
-      if (busy) return;
-      busy = true;
-      current += dir;
-      slide(current);
-    }
-
-    track.addEventListener('transitionend', function () {
-      // After sliding into a clone zone, silently jump to the real equivalent
-      if (current >= cloneCount + REAL) {
-        current -= REAL;
-        jump(current);
-      } else if (current < cloneCount) {
-        current += REAL;
-        jump(current);
+      function itemW() {
+        var li = track.querySelector('li');
+        return li ? li.offsetWidth : 0;
       }
-      busy = false;
+
+      function buildClones() {
+        // Remove existing clones
+        Array.from(track.querySelectorAll('.carousel-clone')).forEach(function (el) { el.remove(); });
+
+        cloneCount = Math.min(slots(), REAL); // clone enough to fill one screen on each side
+
+        // Prepend clones of the LAST cloneCount real items
+        // so scrolling left from item 0 seamlessly shows the end
+        var frag = document.createDocumentFragment();
+        for (var i = REAL - cloneCount; i < REAL; i++) {
+          var c = realItems[i].cloneNode(true);
+          c.classList.add('carousel-clone');
+          c.setAttribute('aria-hidden', 'true');
+          frag.appendChild(c);
+        }
+        track.insertBefore(frag, track.firstChild);
+
+        // Append clones of the FIRST cloneCount real items
+        // so scrolling right past the last item seamlessly shows the start
+        for (var j = 0; j < cloneCount; j++) {
+          var c = realItems[j].cloneNode(true);
+          c.classList.add('carousel-clone');
+          c.setAttribute('aria-hidden', 'true');
+          track.appendChild(c);
+        }
+
+        // Start positioned at the first real item (index = cloneCount)
+        current = cloneCount;
+      }
+
+      function jump(index) {
+        // Instant position change — no animation
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(-' + (index * itemW()) + 'px)';
+        // Force reflow so the next transition isn't skipped
+        track.getBoundingClientRect();
+      }
+
+      function slide(index) {
+        track.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1)';
+        track.style.transform = 'translateX(-' + (index * itemW()) + 'px)';
+      }
+
+      function navigate(dir) {
+        if (busy) return;
+        busy = true;
+        current += dir;
+        slide(current);
+      }
+
+      track.addEventListener('transitionend', function () {
+        // After sliding into a clone zone, silently jump to the real equivalent
+        if (current >= cloneCount + REAL) {
+          current -= REAL;
+          jump(current);
+        } else if (current < cloneCount) {
+          current += REAL;
+          jump(current);
+        }
+        busy = false;
+      });
+
+      if (nextBtn) nextBtn.addEventListener('click', function () { navigate(1); });
+      if (prevBtn) prevBtn.addEventListener('click', function () { navigate(-1); });
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = window.setInterval(function () { navigate(1); }, 2600);
+      }
+
+      function stopAuto() {
+        if (autoTimer) {
+          window.clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      }
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+      carousel.addEventListener('focusin', stopAuto);
+      carousel.addEventListener('focusout', startAuto);
+
+      // Rebuild on resize and reposition without animation
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          buildClones();
+          jump(current);
+        }, 150);
+      }, { passive: true });
+
+      // Init
+      buildClones();
+      jump(current);
+      startAuto();
     });
-
-    if (nextBtn) nextBtn.addEventListener('click', function () { navigate(1); });
-    if (prevBtn) prevBtn.addEventListener('click', function () { navigate(-1); });
-
-    function startAuto() {
-      stopAuto();
-      autoTimer = window.setInterval(function () { navigate(1); }, 2600);
-    }
-
-    function stopAuto() {
-      if (autoTimer) {
-        window.clearInterval(autoTimer);
-        autoTimer = null;
-      }
-    }
-
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
-    carousel.addEventListener('focusin', stopAuto);
-    carousel.addEventListener('focusout', startAuto);
-
-    // Rebuild on resize and reposition without animation
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        buildClones();
-        jump(current);
-      }, 150);
-    }, { passive: true });
-
-    // Init
-    buildClones();
-    jump(current);
-    startAuto();
   }());
 
   /* ---- Case studies carousel ---- */
@@ -309,6 +313,68 @@
 
     buildClones();
     jump(current);
+  }());
+
+  /* ---- Related services infinite scroller ---- */
+  (function () {
+    var wrap = document.getElementById('related-scroller');
+    if (!wrap || !window.RENUE_SERVICES) return;
+
+    var currentSlug   = window.__RS || '';
+    var currentBranch = '';
+
+    // Find the branch of the current service
+    var currentSvc = window.RENUE_SERVICES.filter(function (s) { return s.slug === currentSlug; })[0];
+    if (currentSvc) currentBranch = currentSvc.branch;
+
+    // All services in the same branch, excluding the current page
+    var peers = window.RENUE_SERVICES.filter(function (s) {
+      return s.branch === currentBranch && s.slug !== currentSlug;
+    });
+
+    if (!peers.length) return;
+
+    function buildCard(svc, hidden) {
+      var a = document.createElement('a');
+      a.href = '/' + svc.slug + '/';
+      a.className = 'service-scroll-card';
+      if (hidden) a.setAttribute('aria-hidden', 'true');
+
+      var img = document.createElement('img');
+      img.src     = svc.img;
+      img.alt     = svc.title;
+      img.loading = 'lazy';
+      a.appendChild(img);
+
+      var body = document.createElement('div');
+      body.className = 'service-scroll-card-body';
+
+      var h3 = document.createElement('h3');
+      h3.textContent = svc.title;
+      body.appendChild(h3);
+
+      var p = document.createElement('p');
+      p.textContent = svc.short;
+      body.appendChild(p);
+
+      var lnk = document.createElement('span');
+      lnk.className   = 'card-link';
+      lnk.textContent = 'Learn more \u2192';
+      body.appendChild(lnk);
+
+      a.appendChild(body);
+      return a;
+    }
+
+    var track = document.createElement('div');
+    track.className = 'services-scroller-track';
+
+    // Original set
+    peers.forEach(function (svc) { track.appendChild(buildCard(svc, false)); });
+    // Duplicate set for seamless infinite loop
+    peers.forEach(function (svc) { track.appendChild(buildCard(svc, true)); });
+
+    wrap.appendChild(track);
   }());
 
   /* ---- Form: basic client-side feedback ---- */
