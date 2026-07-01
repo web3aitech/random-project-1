@@ -133,8 +133,8 @@ h4 { font-size: 0.95rem; }
 /* ---------- Scroll reveal ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .55s ease, transform .55s ease;
+  transform: translateY(14px);
+  transition: opacity .22s ease, transform .22s ease;
 }
 .reveal.visible {
   opacity: 1;
